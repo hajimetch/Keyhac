@@ -222,8 +222,8 @@ def configure(keymap):
     ####################################################################################################
 
     # IMEの設定（３つの設定のいずれか一つを True にする）
-    fc.use_old_Microsoft_IME = True
-    fc.use_new_Microsoft_IME = False
+    fc.use_old_Microsoft_IME = False
+    fc.use_new_Microsoft_IME = True
     fc.use_Google_IME = False
 
     # 個人設定ファイルのセクション [section-options] を読み込んで実行する
@@ -366,17 +366,21 @@ def configure(keymap):
 
     # IME をトグルで切り替えるキーを指定する（複数指定可）
     fc.toggle_input_method_key = []
-    fc.toggle_input_method_key += ["C-Yen"]
-    fc.toggle_input_method_key += ["C-o"]
+    # fc.toggle_input_method_key += ["C-Yen"]
+    # fc.toggle_input_method_key += ["C-o"]
     # fc.toggle_input_method_key += ["O-LAlt"]
 
     #---------------------------------------------------------------------------------------------------
     # IME を切り替えるキーの組み合わせ（disable、enable の順）を指定する（複数指定可）
     # （toggle_input_method_key のキー設定より優先します）
-    fc.set_input_method_key = []
+    # fc.set_input_method_key = []
+
+    ## 左右Shift で IME を切り替える
+    # custom.
+    fc.set_input_method_key = [["S-END", "S-HOME"]]
 
     ## 日本語キーボードを利用している場合、[無変換] キーで英数入力、[変換] キーで日本語入力となる
-    fc.set_input_method_key += [["(29)", "(28)"]]
+    # fc.set_input_method_key += [["(29)", "(28)"]]
 
     ## LAlt の単押しで英数入力、RAlt の単押しで日本語入力となる
     # fc.set_input_method_key += [["O-LAlt", "O-RAlt"]]
@@ -506,7 +510,7 @@ def configure(keymap):
     fc.use_alt_shift_digit_key_for_f13_to_f24 = False
 
     # 表示しているウィンドウの中で、一番最近までフォーカスがあったウィンドウに移動するキーを指定する
-    fc.other_window_key = "A-o"
+    fc.other_window_key = None # "A-o"
 
     # アクティブウィンドウを切り替えるキーの組み合わせ（前、後 の順）を指定する（複数指定可）
     # （内部で A-Tab による切り替えを行っているため、設定するキーは Altキーとの組み合わせとしてください）
@@ -520,18 +524,19 @@ def configure(keymap):
     # アクティブウィンドウをディスプレイ間で移動するキーの組み合わせ（前、後 の順）を指定する（複数指定可）
     # （デフォルトキーは、["W-S-Left", "W-S-Right"]）
     fc.window_movement_key_for_displays = []
-    fc.window_movement_key_for_displays += [[None, "W-o"]]
+    # fc.window_movement_key_for_displays += [[None, "W-o"]]
 
     # ウィンドウを最小化、リストアするキーの組み合わせ（リストア、最小化 の順）を指定する（複数指定可）
     fc.window_minimize_key = []
-    fc.window_minimize_key += [["A-S-m", "A-m"]]
+    # fc.window_minimize_key += [["A-S-m", "A-m"]]
 
     # 仮想デスクトップを切り替えるキーの組み合わせ（前、後 の順）を指定する（複数指定可）
     # （仮想デスクトップを切り替えた際にフォーカスのあるウィンドウを適切に処理するため、設定するキーは
     #   Winキーとの組み合わせとしてください）
     # （デフォルトキーは、["W-C-Left", "W-C-Right"]）
     fc.desktop_switching_key = []
-    fc.desktop_switching_key += [["W-b", "W-f"]]
+    fc.desktop_switching_key += [["W-C-Left", "W-C-Right"]]
+    # fc.desktop_switching_key += [["W-b", "W-f"]]
     # fc.desktop_switching_key += [["W-Left", "W-Right"]]
 
     # アクティブウィンドウを仮想デスクトップ間で移動するキーの組み合わせ（前、後 の順）を指定する（複数指定可）
@@ -542,6 +547,14 @@ def configure(keymap):
     fc.window_movement_key_for_desktops = []
     # fc.window_movement_key_for_desktops += [["W-p", "W-n"]]
     # fc.window_movement_key_for_desktops += [["W-Up", "W-Down"]]
+
+    # 仮想デスクトップを追加・削除するキーの組み合わせ（追加、削除 の順）を指定する（複数指定可）
+    # custom.
+    fc.desktop_revising_key = [["W-C-Plus", "W-C-Minus"]]
+
+    # タスクビューの表示を切り替えるキーを指定する
+    # custom.
+    fc.toggle_taskview_key = ["W-C-Up", "W-C-Down"]
 
     # ウィンドウ操作（other_window、restore_window など）の対象としたくないアプリケーションソフトの
     # “クラス名称”を指定する
@@ -556,10 +569,10 @@ def configure(keymap):
     fc.window_operation_exclusion_process = r"RocketDock\.exe$"  # サンプルとして RocketDock.exe を登録
 
     # クリップボードリストを起動するキーを指定する
-    fc.clipboardList_key = "A-y"
+    fc.clipboardList_key = None # "A-y"
 
     # ランチャーリストを起動するキーを指定する
-    fc.lancherList_key = "A-l"
+    fc.lancherList_key = None # "A-l"
 
     # shell_command 関数で起動するアプリケーションソフトを指定する
     # （PATH が通っていない場所にあるコマンドは、絶対パスで指定してください）
@@ -580,6 +593,9 @@ def configure(keymap):
     ###########################################################################
     ## 基本機能の設定
     ###########################################################################
+
+    # following line is custom.
+    keymap_global = keymap.defineWindowKeymap()
 
     fakeymacs.not_emacs_keybind = []
     fakeymacs.ime_cancel = False
@@ -814,6 +830,15 @@ def configure(keymap):
             checkWindow("sakura.exe", "SakuraView*")):   # Sakura Editor
             self_insert_command("C-h")()
 
+    # followings are custom.
+
+    def select_backward_word():
+        self_insert_command("C-S-Left")()
+
+    def select_forward_word():
+        self_insert_command("C-S-Right")()
+
+
     ##################################################
     ## カット / コピー / 削除 / アンドゥ
     ##################################################
@@ -977,6 +1002,30 @@ def configure(keymap):
                 wnd.getLastActivePopup().setForeground()
                 break
 
+    # followings are custom.
+
+    def quit_app():
+        self_insert_command("A-F4")()
+
+    def print_buffer():
+        self_insert_command("C-p")()
+
+    def new_window():
+        self_insert_command("C-n")()
+
+    def new_tab():
+        self_insert_command("C-t")()
+
+    def action_center():
+        self_insert_command("W-a")()
+
+    def show_desktop():
+        self_insert_command("W-d")()
+
+    def start_menu():
+        self_insert_command("C-Esc")()
+
+
     ##################################################
     ## 文字列検索 / 置換
     ##################################################
@@ -1056,6 +1105,18 @@ def configure(keymap):
             fakeymacs.is_playing_kmacro = False
 
         keymap.delayedCall(callKmacro, 0)
+
+    # followings are custom.
+
+    def bold_font():
+        self_insert_command("C-b")()
+
+    def italic_font():
+        self_insert_command("C-i")()
+
+    def underline_font():
+        self_insert_command("C-u")()
+
 
     ##################################################
     ## その他
@@ -1642,8 +1703,16 @@ def configure(keymap):
 
     define_key(keymap_emacs, "Left",     reset_search(reset_undo(reset_counter(mark(repeat(backward_char), False)))))
     define_key(keymap_emacs, "Right",    reset_search(reset_undo(reset_counter(mark(repeat(forward_char), True)))))
-    define_key(keymap_emacs, "C-Left",   reset_search(reset_undo(reset_counter(mark(repeat(backward_word), False)))))
-    define_key(keymap_emacs, "C-Right",  reset_search(reset_undo(reset_counter(mark(repeat(forward_word), True)))))
+
+#   define_key(keymap_emacs, "C-Left",   reset_search(reset_undo(reset_counter(mark(repeat(backward_word), False)))))
+#   define_key(keymap_emacs, "C-Right",  reset_search(reset_undo(reset_counter(mark(repeat(forward_word), True))))
+
+    # following 4 lines are custom.
+    define_key(keymap_emacs, "M-Left",   reset_search(reset_undo(reset_counter(mark(repeat(backward_word), False)))))
+    define_key(keymap_emacs, "M-Right",  reset_search(reset_undo(reset_counter(mark(repeat(forward_word), True)))))
+    define_key(keymap_emacs, "M-S-Left",   reset_search(reset_undo(reset_counter(mark(repeat(select_backward_word), False)))))
+    define_key(keymap_emacs, "M-S-Right",  reset_search(reset_undo(reset_counter(mark(repeat(select_forward_word), True)))))
+
     define_key(keymap_emacs, "Up",       reset_search(reset_undo(reset_counter(mark(repeat(previous_line), False)))))
     define_key(keymap_emacs, "Down",     reset_search(reset_undo(reset_counter(mark(repeat(next_line), True)))))
     define_key(keymap_emacs, "Home",     reset_search(reset_undo(reset_counter(mark(move_beginning_of_line, False)))))
@@ -1732,6 +1801,24 @@ def configure(keymap):
     define_key(keymap_emacs, "C-g",         reset_search(reset_counter(reset_mark(keyboard_quit))))
     define_key(keymap_emacs, "Ctl-x C-c",   reset_search(reset_undo(reset_counter(reset_mark(kill_emacs)))))
     define_key(keymap_emacs, "M-S-1",       reset_search(reset_undo(reset_counter(reset_mark(shell_command)))))
+
+    # followings are custom.
+    define_key(keymap_emacs, "W-s", reset_search(reset_undo(reset_counter(reset_mark(save_buffer)))))
+    define_key(keymap_emacs, "W-o", reset_search(reset_undo(reset_counter(reset_mark(find_file)))))
+    define_key(keymap_emacs, "W-x", reset_search(reset_undo(reset_counter(reset_mark(kill_region)))))
+    define_key(keymap_emacs, "W-c", reset_search(reset_undo(reset_counter(reset_mark(kill_ring_save)))))
+    define_key(keymap_emacs, "W-v", reset_search(reset_undo(reset_counter(reset_mark(repeat(yank))))))
+    define_key(keymap_emacs, "W-z", reset_search(reset_counter(reset_mark(undo))))
+    define_key(keymap_emacs, "W-a", reset_search(reset_undo(reset_counter(mark_whole_buffer))))
+    define_key(keymap_emacs, "W-p", reset_search(reset_undo(reset_counter(reset_mark(print_buffer)))))
+    define_key(keymap_emacs, "W-n", reset_search(reset_undo(reset_counter(reset_mark(new_window)))))
+    define_key(keymap_emacs, "W-t", reset_search(reset_undo(reset_counter(reset_mark(new_tab)))))
+    define_key(keymap_emacs, "W-f", reset_undo(reset_counter(reset_mark(isearch_forward))))
+    define_key(keymap_emacs, "W-b", reset_search(reset_undo(reset_counter(reset_mark(bold_font)))))
+    define_key(keymap_emacs, "W-i", reset_search(reset_undo(reset_counter(reset_mark(italic_font)))))
+    define_key(keymap_emacs, "W-u", reset_search(reset_undo(reset_counter(reset_mark(underline_font)))))
+    define_key(keymap_global, "W-q", reset_search(reset_undo(reset_counter(reset_mark(quit_app)))))
+    define_key(keymap_emacs, "W-w", reset_search(reset_undo(reset_counter(reset_mark(kill_buffer)))))
 
     ## 「VSCode 用」のキー設定（マルチカーソル）
     define_key(keymap_emacs, "C-A-p", reset_search(reset_undo(reset_counter(mark_up))))
@@ -2020,7 +2107,7 @@ def configure(keymap):
     ## Emacs キーバインドの切り替えのキー設定
     ###########################################################################
 
-    keymap_global = keymap.defineWindowKeymap()
+#   keymap_global = keymap.defineWindowKeymap()
 
     define_key(keymap_global, fc.toggle_emacs_keybind_key, toggle_emacs_keybind)
 
@@ -2154,6 +2241,17 @@ def configure(keymap):
     def move_window_to_next_desktop():
         self_insert_command("LW-LC-LA-Right")()
 
+    # followings are custom.
+
+    def toggle_taskview():
+        self_insert_command("W-Tab")()
+
+    def append_desktop():
+        self_insert_command("W-C-D")()
+
+    def delete_desktop():
+        self_insert_command("W-C-f4")()
+
     ##################################################
     ## キーバインド（デスクトップ用）
     ##################################################
@@ -2180,6 +2278,17 @@ def configure(keymap):
     for previous_key, next_key in fc.desktop_switching_key:
         define_key(keymap_global, previous_key, previous_desktop)
         define_key(keymap_global, next_key,     next_desktop)
+
+    # 仮想デスクトップの追加・削除
+    # custom.
+    for previous_key, next_key in fc.desktop_revising_key:
+        define_key(keymap_global, previous_key, append_desktop)
+        define_key(keymap_global, next_key,     delete_desktop)
+
+    # タスクビューの表示の切り替え
+    # custom.
+    for key in fc.toggle_taskview_key:
+        define_key(keymap_global, key,          toggle_taskview)
 
     # アクティブウィンドウ仮想デスクトップの切り替え
     for previous_key, next_key in fc.window_movement_key_for_desktops:
