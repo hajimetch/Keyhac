@@ -377,7 +377,7 @@ def configure(keymap):
 
     ## 左右Shift で IME を切り替える
     # custom.
-    fc.set_input_method_key = [["S-END", "S-HOME"]]
+    fc.set_input_method_key = [["S-f11", "S-f12"]]
 
     ## 日本語キーボードを利用している場合、[無変換] キーで英数入力、[変換] キーで日本語入力となる
     # fc.set_input_method_key += [["(29)", "(28)"]]
