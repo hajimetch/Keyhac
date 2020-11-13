@@ -280,6 +280,7 @@ def configure(keymap):
                                "TurboVNC.exe",           # TurboVNC
                                "vncviewer.exe",          # UltraVNC
                                "vncviewer64.exe",        # UltraVNC
+                               "Code.exe",               # VSCode costom.
                               ]
 
     # IME の切り替え“のみをしたい”アプリケーションソフトを指定する
@@ -304,6 +305,7 @@ def configure(keymap):
                                "putty.exe",              # PuTTY
                                "ttermpro.exe",           # TeraTerm
                                "MobaXterm.exe",          # MobaXterm
+                               "Code.exe",               # VSCode custom.
                               ]
 
     # キーマップ毎にキー設定をスキップするキーを指定する
