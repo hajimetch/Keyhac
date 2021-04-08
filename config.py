@@ -614,12 +614,12 @@ def configure(keymap):
                 keymap.clipboard_history.enableHook(True)
 
             if window.getProcessName() in fc.emacs_exclusion_key.keys():
-                fakeymacs.exclution_key = list(map(str,
+                fakeymacs.exclusion_key = list(map(str,
                                                    map(keyhac_keymap.KeyCondition.fromString,
                                                        map(addSideOfModifierKey,
                                                            fc.emacs_exclusion_key[window.getProcessName()]))))
             else:
-                fakeymacs.exclution_key = []
+                fakeymacs.exclusion_key = []
 
             reset_undo(reset_counter(reset_mark(lambda: None)))()
             fakeymacs.ime_cancel = False
@@ -1430,7 +1430,7 @@ def configure(keymap):
 
                 ckey = str(keyhac_keymap.KeyCondition.fromString(key))
                 def _command():
-                    if ckey in fakeymacs.exclution_key:
+                    if ckey in fakeymacs.exclusion_key:
                         keymap.InputKeyCommand(key)()
                     else:
                         command()
