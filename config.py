@@ -373,17 +373,13 @@ def configure(keymap):
     #---------------------------------------------------------------------------------------------------
     # IME を切り替えるキーの組み合わせ（disable、enable の順）を指定する（複数指定可）
     # （toggle_input_method_key のキー設定より優先します）
-    # fc.set_input_method_key = []
-
-    ## 左右Shift で IME を切り替える
-    # custom.
-    fc.set_input_method_key = [["S-f11", "S-f12"]]
+    fc.set_input_method_key = []
 
     ## 日本語キーボードを利用している場合、[無変換] キーで英数入力、[変換] キーで日本語入力となる
     # fc.set_input_method_key += [["(29)", "(28)"]]
 
     ## LAlt の単押しで英数入力、RAlt の単押しで日本語入力となる
-    # fc.set_input_method_key += [["O-LAlt", "O-RAlt"]]
+    fc.set_input_method_key += [["O-LShift", "O-RShift"]] # [["O-LAlt", "O-RAlt"]]
 
     ## C-j や C-j C-j で 英数入力となる（toggle_input_method_key の設定と併せ、C-j C-o で日本語入力となる）
     # fc.set_input_method_key += [["C-j", None]]
